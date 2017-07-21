@@ -16,6 +16,14 @@ public class GUI extends Canvas {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
+                g.setColor(Color.gray);
+                for(int i = 0; i < width/Car.height; i+=2) {
+                    g.fillRect(0, i * Car.height, width, Car.height);
+                }
+                g.setColor(Color.lightGray);
+                for(int i = 1; i < width/Car.height; i+=2) {
+                    g.fillRect(0, i * Car.height, width, Car.height);
+                }
                 g.drawImage(Engine.player.bufferedImage, Engine.player.bounds.x, Engine.player.bounds.y, null);
                 for(Car car : Engine.carList) {
                     ((Graphics2D) g).drawImage(car.bufferedImage, car.bounds.x, car.bounds.y, null);
@@ -36,7 +44,7 @@ public class GUI extends Canvas {
                 }
             }
         });
-        frame.setPreferredSize(new Dimension(width, height));
+        frame.getContentPane().setPreferredSize(new Dimension(width, height));
         frame.setTitle("Hej");
         frame.pack();
         frame.setVisible(true);
