@@ -9,6 +9,7 @@ public class Player {
     int height = 50;
     Rectangle bounds;
     BufferedImage bufferedImage;
+    boolean onLighter = true;
 
     public Player() {
         bounds = new Rectangle(375, 450, width, height);

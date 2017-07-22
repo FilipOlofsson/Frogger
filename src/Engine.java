@@ -21,7 +21,7 @@ public class Engine {
         rnd = new Random();
         gui = new GUI();
         for(int i = 0; i < 9; i++) {
-            carList.add(new Car(0, Car.height * i, 2 + rnd.nextInt(10)));
+            carList.add(new Car(0, Car.height * i, 2 + rnd.nextInt(15)));
         }
     }
 
@@ -36,6 +36,11 @@ public class Engine {
 
     public static void goForward() {
         carList.add(new Car(0, -50, 2 + rnd.nextInt(10)));
+        if(player.onLighter) {
+            player.onLighter = false;
+        } else {
+            player.onLighter = true;
+        }
         for(Car car : carList) {
             car.bounds.setLocation( (int) car.bounds.x, (int) (car.bounds.getY() + car.bounds.getHeight()));
             if(car.bounds.getY() + car.bounds.getHeight() > gui.height) {

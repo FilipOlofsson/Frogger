@@ -17,21 +17,34 @@ public class GUI extends Canvas {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.setColor(Color.gray);
-                for(int i = 0; i < width/Car.height; i+=2) {
-                    g.fillRect(0, i * Car.height, width, Car.height);
+                if(Engine.player.onLighter) {
+                    g.setColor(Color.gray);
+                    for(int i = 1; i < width/Car.height; i+=2) {
+                        g.fillRect(0, i * Car.height, width, Car.height);                                               // Draw the gray road
+                    }
+                    g.setColor(Color.lightGray);
+                    for(int i = 0; i < width/Car.height; i+=2) {
+                        g.fillRect(0, i * Car.height, width, Car.height);                                               // Draw the lightgray road
+                    }
+                } else {
+                    g.setColor(Color.lightGray);
+                    for(int i = 1; i < width/Car.height; i+=2) {
+                        g.fillRect(0, i * Car.height, width, Car.height);                                               // Draw the lightgray road
+                    }
+                    g.setColor(Color.gray);
+                    for(int i = 0; i < width/Car.height; i+=2) {
+                        g.fillRect(0, i * Car.height, width, Car.height);                                               // Draw the gray road
+                    }
                 }
-                g.setColor(Color.lightGray);
-                for(int i = 1; i < width/Car.height; i+=2) {
-                    g.fillRect(0, i * Car.height, width, Car.height);
-                }
-                g.drawImage(Engine.player.bufferedImage, Engine.player.bounds.x, Engine.player.bounds.y, null);
+
+                g.drawImage(Engine.player.bufferedImage, Engine.player.bounds.x, Engine.player.bounds.y, null);  // Draw the Player
                 for(Car car : Engine.carList) {
-                    ((Graphics2D) g).drawImage(car.bufferedImage, car.bounds.x, car.bounds.y, null);
+                    ((Graphics2D) g).drawImage(car.bufferedImage, car.bounds.x, car.bounds.y, null);             // Draw each car
                 }
                 g.setColor(Color.RED);
                 FontMetrics fm = g.getFontMetrics();
                 g.setFont(new Font("Arial", Font.BOLD, 25));
-                g.drawString(Integer.toString(Engine.points), 1, 25);
+                g.drawString(Integer.toString(Engine.points), 1, 25);                                               // Draw the String
             }
         };
         frame.add(panel);
